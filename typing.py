@@ -30,6 +30,7 @@ class type:
             self.draw(screen)#drow
             pygame.display.update()#update
             self.key()#キー情報取得のためのオブジェクト
+            
     def draw(self, screen):
         screen.fill((0, 0, 0))#背面は黒色
         if self.game_state == START:#スタート状態の場合
@@ -43,7 +44,7 @@ class type:
         elif self.game_state == PLAY:#PLAY画面
             mozi_font = pygame.font.Font("ipag.ttf", 40)#fontはipag.ttfに指定、大きさ40px
             answer = mozi_font.render(self.answer,False,(255,255,255))#日本語の方のanswerを表示
-            screen.blit(answer,((SCR_RECT.width-len(self.answer)*50)/2, SCR_RECT.height/2-100))#answerを表示する位置を決める
+            screen.blit(answer,((SCR_RECT.width-answer.get_width())/2, SCR_RECT.height/2-100))#answerを表示する位置を決める
             for q in range(0, len(self.question)):#問題の文字数分回す
                 if(q < self.num):#self.numがタイピングで正解した場合の数字が入っている。その数以下なら
                     mozi = mozi_font.render(self.question[q], False, (0, 255, 0))#黄色にする(正解した文字は色を変える)
